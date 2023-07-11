@@ -21,7 +21,7 @@
 
                     <h2>Reserver une salle</h2>
 
-                    <form action="demande.php" method="POST">
+                    <form action="modules/demande.php" method="POST">
 
                         <div class="user-box">
                             <input type="text" name="nom" required="">
