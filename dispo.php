@@ -22,23 +22,33 @@
                 <tr>
                 <th>Salle</th>
                 <th>Disponibilité</th>
+                <th>Réserver</th>
                 </tr>
             </thead>
             <tbody>                
 
-                    <?php
-                        $dispo = new ma_connexion("localhost","app_reservation","root","");
-                        $requete = $dispo -> select("*","salles");
+            <?php
+                $dispo = new ma_connexion("localhost","app_reservation","root","");
+                $requete = $dispo->select("*","salles");
 
-                        foreach($requete as $salles ){
-                            echo "                           
-                                <tr>
-                                    <td><strong>" . $salles['numero'] . "</strong></td>
-                                    <td>". $salles['dispo'] ."</td>
-                                </tr>      
-                            ";
-                        }
-                    ?>
+                foreach($requete as $salles) {
+                    echo "
+                        <tr>
+                            <td><strong>" . $salles['numero'] . "</strong></td>
+                            <td>". $salles['dispo'] ."</td>
+                        ";
+
+                    if($salles['dispo'] == 'disponible') {
+                        echo "<td><button class='bouton_res'><a href='reservation.php'>Réserver</a></button></td>";
+                    }
+                    else{
+                        echo "";
+                    }
+
+                    echo "</tr>";
+                }
+            ?>
+
                 
             </tbody>
         </table>

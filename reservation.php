@@ -21,7 +21,7 @@
 
                     <h2>Reserver une salle</h2>
 
-                    <form>
+                    <form action="demande.php" method="POST">
 
                         <div class="user-box">
                             <input type="text" name="nom" required="">
@@ -39,24 +39,29 @@
                         </div>
 
                         <div class="user-box">
+                            <input type="number" name="salle" required="">
+                            <label for="salle">Salle souhaiter</label>
+                        </div>
+
+                        <div class="user-box">
                             <small>Date de début</small>
                             <input type="date" name="date_entree" required="">
                             <label for="date_entree"></label>
                         </div>
-                        
+
                         <div class="user-box">
                             <small>Date de fin</small>
                             <input type="date" name="date_sortie" required="">
                             <label for="date_sortie"></label>
                         </div>
 
-                        <a href="#" type="submit">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Submit
-                        </a>
+                        <button id="aled" href="#" type="submit">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Submit
+                        </button>
                     </form>
                 </div>
             </section>

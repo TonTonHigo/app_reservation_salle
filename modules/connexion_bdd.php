@@ -56,38 +56,61 @@ class ma_connexion{
 
 
     // INSERTION demande
-    public function insert_demande($nom, $prenom, $email , $date_entree, $date_sortie, $numero_salle){
-        try {
+    public function insert_demande($nom, $prenom, $email , $date_entree, $date_sortie, $numero_salle){ 
 
-            $insertion = "INSERT INTO  `demande`(nom, prenom, email , date_entree, date_sortie, numero_salle) VALUES (?, ?, ?, ?, ?, ?)";
+            try {
 
-            $requete = $this -> connexionPDO -> prepare($insertion);
-            $requete->bindValue(1, $nom, PDO::PARAM_STR);
-            $requete->bindValue(2, $prenom, PDO::PARAM_STR);
-            $requete->bindValue(3, $email, PDO::PARAM_STR);
-            $requete->bindValue(4, $date_entree);
-            $requete->bindValue(5, $date_sortie);
-            $requete->bindValue(6, $numero_salle, PDO::PARAM_INT);
-
-        
-            $requete->execute();
-
-        } catch (PDOException $e) {
-
-            echo "Erreur : " . $e->getMessage();
-
-        }
+                $insertion = "INSERT INTO  `demande`(nom, prenom, email , date_entree, date_sortie, numero_salle)  VALUES (?, ?, ?, ?, ?, ?)";
+    
+                $requete = $this -> connexionPDO -> prepare($insertion);
+                $requete->bindValue(1, $nom, PDO::PARAM_STR);
+                $requete->bindValue(2, $prenom, PDO::PARAM_STR);
+                $requete->bindValue(3, $email, PDO::PARAM_STR);
+                $requete->bindValue(4, $date_entree);
+                $requete->bindValue(5, $date_sortie);
+                $requete->bindValue(6, $numero_salle, PDO::PARAM_INT);
+    
+            
+                $requete->execute();
+    
+            } catch (PDOException $e) {
+    
+                echo "Erreur : " . $e->getMessage();
+    
+            }
     }
 
+    // UPDATE Salle
+    public function update_salle($date_entree, $date_sortie, $numero_salle) {
 
-}
+        try {
+            $update = "UPDATE `salles` SET date_entree = ?, date_sortie = ?, dispo = 'indisponible' WHERE numero = ?";
+    
+            $requete = $this->connexionPDO->prepare($update);
+            $requete->bindValue(1, $date_entree);
+            $requete->bindValue(2, $date_sortie);
+            $requete->bindValue(3, $numero_salle);
+    
+            $requete->execute();
+        } catch (PDOException $e) {
+            echo "Erreur: " . $e->getMessage();
+        }
+    }
+    
+    
+}     
+ 
 
-//$test = new ma_connexion("localhost", "massage", "root", "");
+        
+
+
+
+// $test = new ma_connexion("localhost", "app_reservation", "root", "");
+// $test -> update_salle("2023-12-23", "2023-11-23", "1");
 // $users = $test -> select("*","users");
 
 // var_dump($articles = $test -> select("*","articles"));
  //$test -> insert_articles("titre", "resume", "titre_2" , "contenu", "titre_3", "contenu_2", "photo", "1960-08-14", "oof");
-// $test -> update_client("2","hampter","antartique","hampter@gmail.com");
 // $test -> delete_client("5");
 
 ?>
