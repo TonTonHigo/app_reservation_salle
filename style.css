@@ -41,6 +41,10 @@ header.scrolled{
     color: white;
     text-decoration: none;
 }
+.lien_nul:hover {
+    mix-blend-mode: difference;
+    
+}
 
 .lilili {
     margin-right: 25px;
